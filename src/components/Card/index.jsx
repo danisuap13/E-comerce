@@ -25,7 +25,7 @@ const Card = ( { data } ) => {
 				</div>
 			</figure>
 			<p className='flex justify-between'>
-				<span className='text-sm font-light'>{data.title}</span>
+				<span className='text-sm font-light'>{data.title.slice(0,20)}...</span>
 				<span className='text-sm font-medium'>${data.price}</span>
 			</p>
 		</div>
