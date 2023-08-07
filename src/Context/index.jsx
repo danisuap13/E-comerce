@@ -21,7 +21,7 @@ export const ShoppingCartProvider = ({ children }) => {
 	const closeCheckoutSideMenu =  () => setIsCheckoutSideMenuOpen(false);
 	
 	// Quantity Menu ¬ Open / Close
-	const [isQuantityMenuOpen, setIsQuantityMenuOpen] = useState(true);
+	const [isQuantityMenuOpen, setIsQuantityMenuOpen] = useState(false);
 	const openQuantityMenu =  () => setIsQuantityMenuOpen(true);
 	const closeQuantityMenu =  () => setIsQuantityMenuOpen(false);
 		
