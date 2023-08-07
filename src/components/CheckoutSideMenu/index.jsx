@@ -6,7 +6,8 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 const CheckoutSideMenu = () => {
 	const context = useContext(ShoppingCartContext);
 
-	const handleDelete = (id) => {
+	const handleDelete = (id, value) => {
+		context.setCount(context.count - value);
 		const filteredProducts = context.cartProducts.filter(product => product.id != id);
 		context.setCartProducts(filteredProducts);
 	};

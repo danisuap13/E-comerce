@@ -9,7 +9,7 @@ export const ShoppingCartProvider = ({ children }) => {
 	const [data, setData] = useState([]);
 
 	// Quantity Menu Counter
-	const [quantityCounter, setQuantityCounter] = useState(0);
+	const [quantityCounter, setQuantityCounter] = useState(1);
 	
 	// Product Detail ¬ Open / Close
 	const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -34,8 +34,8 @@ export const ShoppingCartProvider = ({ children }) => {
 		openCheckoutSideMenu();
 		setCartProducts([...cartProducts,{...data,value:quantityCounter}]);
 		setCount(count + quantityCounter); 
-		setQuantityCounter(0);
-	}
+		setQuantityCounter(1);
+}
 
 	const closeQuantityMenu =  () => setIsQuantityMenuOpen(false);
 		

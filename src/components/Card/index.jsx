@@ -12,16 +12,6 @@ const Card = ( { data } ) => {
 		context.closeCheckoutSideMenu();
 	}
 
-const addProductToCart = (event,productData) => {
-		context.setQuantityCounter(0);
-		context.openQuantityMenu();
-		event.stopPropagation();
-		context.setCartProducts([...context.cartProducts,{...productData,value:context.quantityCounter}]);
-		context.setCount(context.count + 1); 
-		context.openCheckoutSideMenu();
-		context.closeProductDetail();
-	}
-
 	const renderIcon = (id) => {
 	const isInCart = context.cartProducts.filter(product => product.id === id).length > 0;
 	
