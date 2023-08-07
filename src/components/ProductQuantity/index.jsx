@@ -4,6 +4,10 @@ import { ChevronDoubleLeftIcon, PlusIcon, ChevronDoubleRightIcon, XMarkIcon } fr
 
 const ProductQuantity = () => {
 	const context = useContext(ShoppingCartContext);
+	const addCount = () => {
+		context.closeQuantityMenu();
+		context.open
+	}
 
 	return(
 		<div className={`${context.isQuantityMenuOpen ? 'flex' : 'hidden'} flex-col h-full w-full fixed border border-black rounded-lg bg-gray-400 opacity-90 top-0 justify-center`}>
@@ -23,7 +27,7 @@ const ProductQuantity = () => {
 						}} />
 					</div>
 				</div>
-				<div /* onClick={() => context.closeQuantityMenu()} */ className='hover:cursor-pointer self-center pb-5'>
+				<div onClick={() => context.addCount()} className='hover:cursor-pointer self-center pb-5'>
 					<PlusIcon className='h-8 w-8 text-emerald-600 border rounded-lg border-black' />
 				</div>
 			</aside>

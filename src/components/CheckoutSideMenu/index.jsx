@@ -29,6 +29,7 @@ const CheckoutSideMenu = () => {
 							imageUrl = {product.image}
 							price = {product.price}
 							handleDelete = {handleDelete}
+							value = {product.value}
 						/>
 					))
 				}

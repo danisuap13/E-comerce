@@ -6,6 +6,7 @@ export const ShoppingCartContext = createContext();
 export const ShoppingCartProvider = ({ children }) => {
 	// Shopping Cart ¬ Increment quantity
 	const [count, setCount] = useState(0);
+	const [data, setData] = useState([]);
 
 	// Quantity Menu Counter
 	const [quantityCounter, setQuantityCounter] = useState(0);
@@ -22,7 +23,20 @@ export const ShoppingCartProvider = ({ children }) => {
 	
 	// Quantity Menu ¬ Open / Close
 	const [isQuantityMenuOpen, setIsQuantityMenuOpen] = useState(false);
-	const openQuantityMenu =  () => setIsQuantityMenuOpen(true);
+	const openQuantityMenu =  (event, cardData) => {
+		event.stopPropagation();
+		setData(cardData);
+		setIsQuantityMenuOpen(true);
+	}
+
+	const addCount = () => {
+		closeQuantityMenu();
+		openCheckoutSideMenu();
+		setCartProducts([...cartProducts,{...data,value:quantityCounter}]);
+		setCount(count + quantityCounter); 
+		setQuantityCounter(0);
+	}
+
 	const closeQuantityMenu =  () => setIsQuantityMenuOpen(false);
 		
 	// Product Detail ¬ Show Product
@@ -49,7 +63,8 @@ export const ShoppingCartProvider = ({ children }) => {
       closeCheckoutSideMenu,
 			isQuantityMenuOpen,
 			closeQuantityMenu,
-			openQuantityMenu
+			openQuantityMenu,
+			addCount
 		}}>
 			{children}
 		</ShoppingCartContext.Provider>

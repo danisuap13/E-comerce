@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid';
 import { ShoppingCartContext } from '../../Context';
 
@@ -12,10 +12,12 @@ const Card = ( { data } ) => {
 		context.closeCheckoutSideMenu();
 	}
 
-	const addProductToCart = (event,productData) => {
+const addProductToCart = (event,productData) => {
+		context.setQuantityCounter(0);
+		context.openQuantityMenu();
 		event.stopPropagation();
+		context.setCartProducts([...context.cartProducts,{...productData,value:context.quantityCounter}]);
 		context.setCount(context.count + 1); 
-		context.setCartProducts([...context.cartProducts,productData]);
 		context.openCheckoutSideMenu();
 		context.closeProductDetail();
 	}
@@ -25,7 +27,7 @@ const Card = ( { data } ) => {
 	
 		if(!isInCart) {
 			return (
-				<div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1' onClick={(event) => addProductToCart(event, data)}>
+				<div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1' onClick={(event) => context.openQuantityMenu(event, data)}>
 						<PlusIcon className='h-6 w-6 text-black'/>
 				</div>
 			);
