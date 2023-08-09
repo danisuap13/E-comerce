@@ -15,7 +15,7 @@ const OrderCard = (props) => {
 				<p className='mx-1 text-md font-light border border-black rounded-lg p-2 hover:cursor-pointer hover:border-white' onClick={() => context.updateCardValue(id)} >{value}</p>
 			<div className='flex items-center gap-2'>
 				<figure className="w-20 h-20">
-					<img /* onClick={()=>showProduct({id, title, image, price, description})} */ className="w-full h-full rounded-lg object-cover hover:cursor-pointer" src={image} alt={title} />
+					<img onClick={()=>showProduct({id, title, image, price, description})} className="w-full h-full rounded-lg object-cover hover:cursor-pointer" src={image} alt={title} />
 				</figure>
 				<p className='text-sm font-light'>{title.slice(0,20)}...</p>
 			</div>
