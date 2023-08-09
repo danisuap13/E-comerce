@@ -36,13 +36,30 @@ export const ShoppingCartProvider = ({ children }) => {
 		setCartProducts(filteredProducts);
 	};
 
+	const [update, setUpdate] = useState(false);
+
+	const updateCardValue = (id) => {
+		const index = cartProducts.findIndex(item => item.id == id)
+		setData(cartProducts[index])
+		setIsCheckoutSideMenuOpen(false);
+		setIsQuantityMenuOpen(true);
+		setUpdate(true)
+	}
+
 	const addCount = () => {
 		closeQuantityMenu();
 		openCheckoutSideMenu();
-		setCartProducts([...cartProducts,{...data,value:quantityCounter}]);
-		setCount(count + quantityCounter); 
-		setQuantityCounter(1);
+		if(update) {
+			data.value = quantityCounter;
+			setUpdate(false);
+			setCount(cartProducts.reduce((ac, item)=>item.value + ac,0));
 		}
+		else {
+			setCartProducts([...cartProducts,{...data,value:quantityCounter}]);
+			setCount(count + quantityCounter)
+		}
+		setQuantityCounter(1);
+	}
 
 	const closeQuantityMenu =  () => setIsQuantityMenuOpen(false);
 		
@@ -73,6 +90,7 @@ export const ShoppingCartProvider = ({ children }) => {
 			openQuantityMenu,
 			addCount,
 			handleDelete,
+			updateCardValue
 		}}>
 			{children}
 		</ShoppingCartContext.Provider>

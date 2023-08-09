@@ -8,10 +8,11 @@ const OrderCard = (props) => {
 		context.openProductDetail();
 		context.setProductToShow(productDetail)
 	}
+	
 	const { id, title, image , price, value, description} = props;
 	return(
 		<div className='flex justify-between items-center mb-3 border border-gray-300 rounded-lg'>
-				<p className='mx-1 text-md font-light border border-black rounded-lg p-2' >{value}</p>
+				<p className='mx-1 text-md font-light border border-black rounded-lg p-2 hover:cursor-pointer hover:border-white' onClick={() => context.updateCardValue(id)} >{value}</p>
 			<div className='flex items-center gap-2'>
 				<figure className="w-20 h-20">
 					<img onClick={()=>showProduct({id, title, image, price, description})} className="w-full h-full rounded-lg object-cover hover:cursor-pointer" src={image} alt={title} />
