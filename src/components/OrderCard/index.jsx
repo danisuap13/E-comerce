@@ -9,7 +9,7 @@ const OrderCard = (props) => {
 		context.setProductToShow(productDetail)
 	}
 	
-	const { id, title, image , price, value, description} = props;
+	const { id, title, image , price, value, description, handleDelete} = props;
 	return(
 		<div className='flex justify-between items-center mb-3 border border-gray-300 rounded-lg'>
 				<p className='mx-1 text-md font-light border border-black rounded-lg p-2 hover:cursor-pointer hover:border-white' onClick={() => context.updateCardValue(id)} >{value}</p>
@@ -21,7 +21,7 @@ const OrderCard = (props) => {
 			</div>
 			<div className='flex items-center gap-1'>
 				<p className="text-lg font-medium ml-2">${(price*value).toFixed(2)}</p>
-				<TrashIcon className='h-6 w-6 text-black mr-1 hover:cursor-pointer' onClick={() => context.handleDelete(id, value)}/>
+				<TrashIcon className='h-6 w-6 text-black mr-1 hover:cursor-pointer' onClick={() => handleDelete(id, value)}/>
 			</div>
 		</div>
 	);

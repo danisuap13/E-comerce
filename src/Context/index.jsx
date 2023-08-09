@@ -8,9 +8,17 @@ export const ShoppingCartProvider = ({ children }) => {
 	const [count, setCount] = useState(0);
 	const [data, setData] = useState([]);
 
-	// Quantity Menu Counter
+	// Add to Cart Quantity Menu ¬ Product Quantity Menu Counter
 	const [quantityCounter, setQuantityCounter] = useState(1);
-	
+
+	// Add to Cart Quantity Menu ¬ Open / Close
+	const [isQuantityMenuOpen, setIsQuantityMenuOpen] = useState(false);
+	const openQuantityMenu =  (cardData) => {
+		setData(cardData);
+		setIsQuantityMenuOpen(true);
+	}
+	const closeQuantityMenu =  () => setIsQuantityMenuOpen(false);
+
 	// Product Detail ¬ Open / Close
 	const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
 	const openProductDetail =  () => setIsProductDetailOpen(true);
@@ -21,23 +29,8 @@ export const ShoppingCartProvider = ({ children }) => {
 	const openCheckoutSideMenu =  () => setIsCheckoutSideMenuOpen(true);
 	const closeCheckoutSideMenu =  () => setIsCheckoutSideMenuOpen(false);
 	
-	// Quantity Menu ¬ Open / Close
-	const [isQuantityMenuOpen, setIsQuantityMenuOpen] = useState(false);
-
-	const openQuantityMenu =  (event, cardData) => {
-		event.stopPropagation();
-		setData(cardData);
-		setIsQuantityMenuOpen(true);
-	}
-
-	const handleDelete = (id, value) => {
-		setCount(count - value);
-		const filteredProducts = cartProducts.filter(product => product.id != id);
-		setCartProducts(filteredProducts);
-	};
-
+	// Update Quantity Product Shopping Cart
 	const [update, setUpdate] = useState(false);
-
 	const updateCardValue = (id) => {
 		const index = cartProducts.findIndex(item => item.id == id)
 		setData(cartProducts[index])
@@ -46,6 +39,7 @@ export const ShoppingCartProvider = ({ children }) => {
 		setUpdate(true)
 	}
 
+	// Quantity Menu Add Button ¬ add product to shopping cart or update quantity counter for product in shopping cart
 	const addCount = () => {
 		closeQuantityMenu();
 		openCheckoutSideMenu();
@@ -61,14 +55,16 @@ export const ShoppingCartProvider = ({ children }) => {
 		setQuantityCounter(1);
 	}
 
-	const closeQuantityMenu =  () => setIsQuantityMenuOpen(false);
-		
 	// Product Detail ¬ Show Product
 	const [productToShow, setProductToShow] = useState({})
 	
 	// Shopping Cart ¬ Add Products to cart
 	const [cartProducts, setCartProducts] = useState([])
 	
+	// Shopping Cart ¬ Order
+	const [order, setOrder] = useState([])
+	
+
 	return(
 		<ShoppingCartContext.Provider value={{
 			count,
@@ -89,8 +85,9 @@ export const ShoppingCartProvider = ({ children }) => {
 			closeQuantityMenu,
 			openQuantityMenu,
 			addCount,
-			handleDelete,
-			updateCardValue
+			updateCardValue,
+			order, 
+			setOrder
 		}}>
 			{children}
 		</ShoppingCartContext.Provider>
