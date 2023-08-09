@@ -6,12 +6,12 @@ const ProductQuantity = () => {
 	const context = useContext(ShoppingCartContext);
 	
 	return(
-		<div className={`${context.isQuantityMenuOpen ? 'flex' : 'hidden'} flex-col h-full w-full fixed border border-black rounded-lg bg-gray-400 opacity-90 top-0 justify-center`}>
-			<aside className='bg-white flex flex-col border rounded-lg w-40 h-40 self-center justify-between'>
+		<div className={`${context.isQuantityMenuOpen ? 'flex' : 'hidden'} flex-col h-full w-full fixed border border-black rounded-lg bg-gray-400 bg-opacity-90 top-0 justify-center`}>
+			<aside className='bg-white flex flex-col border rounded-lg w-60 h-40 self-center justify-between border-black'>
 			<div className='hover:cursor-pointer self-end'>
 				<XMarkIcon className='h-6 w-6 text-red-500' onClick={() => {
 					context.closeQuantityMenu()
-					context.setQuantityCounter(0)
+					context.setQuantityCounter(1)
 				}}/>
 				</div>
 				<div className='flex justify-center'>

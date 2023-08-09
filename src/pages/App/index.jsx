@@ -27,7 +27,7 @@ const AppRoutes = () => {
 const App = () => {
   return (
 		<ShoppingCartProvider>
-			<BrowserRouter >
+			<BrowserRouter className='bg-black'>
 				<AppRoutes />
 				<Navbar />
 				<CheckoutSideMenu />

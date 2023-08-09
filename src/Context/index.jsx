@@ -23,11 +23,18 @@ export const ShoppingCartProvider = ({ children }) => {
 	
 	// Quantity Menu ¬ Open / Close
 	const [isQuantityMenuOpen, setIsQuantityMenuOpen] = useState(false);
+
 	const openQuantityMenu =  (event, cardData) => {
 		event.stopPropagation();
 		setData(cardData);
 		setIsQuantityMenuOpen(true);
 	}
+
+	const handleDelete = (id, value) => {
+		setCount(count - value);
+		const filteredProducts = cartProducts.filter(product => product.id != id);
+		setCartProducts(filteredProducts);
+	};
 
 	const addCount = () => {
 		closeQuantityMenu();
@@ -35,7 +42,7 @@ export const ShoppingCartProvider = ({ children }) => {
 		setCartProducts([...cartProducts,{...data,value:quantityCounter}]);
 		setCount(count + quantityCounter); 
 		setQuantityCounter(1);
-}
+		}
 
 	const closeQuantityMenu =  () => setIsQuantityMenuOpen(false);
 		
@@ -64,7 +71,8 @@ export const ShoppingCartProvider = ({ children }) => {
 			isQuantityMenuOpen,
 			closeQuantityMenu,
 			openQuantityMenu,
-			addCount
+			addCount,
+			handleDelete,
 		}}>
 			{children}
 		</ShoppingCartContext.Provider>

@@ -2,38 +2,45 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import OrderCard from "../../components/OrderCard"
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { totalPrice } from "../../Utils";
 
 const CheckoutSideMenu = () => {
 	const context = useContext(ShoppingCartContext);
 
-	const handleDelete = (id, value) => {
-		context.setCount(context.count - value);
-		const filteredProducts = context.cartProducts.filter(product => product.id != id);
-		context.setCartProducts(filteredProducts);
-	};
+	// const handleDelete = (id, value) => {
+	// 	context.setCount(context.count - value);
+	// 	const filteredProducts = context.cartProducts.filter(product => product.id != id);
+	// 	context.setCartProducts(filteredProducts);
+	// };
 
 	return(
-		<aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} flex-col w-[360px] h-[calc(100vh-68px)] fixed right-0 border border-black rounded-lg bg-white top-20`}>
+		<aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} flex-col w-[400px] h-[calc(100vh-68px)] fixed right-0 top-12 mt-6 border border-black rounded-lg bg-white `}>
 			<div className='flex justify-between items-center p-6'>
 				<h2 className='font-medium text-xl'>My Order</h2>
 				<div onClick={() => context.closeCheckoutSideMenu()} className='hover:cursor-pointer'>
 					<XMarkIcon className='h-6 w-6 text-black'/>
 				</div>
 			</div>
-			<div className="px-6 py-4 overflow-y-scroll">
+			<div className="px-6 py-4 overflow-auto">
 				{
 					context.cartProducts.map(product => (
 						<OrderCard 
 							key = {product.id}
 							id= {product.id}
 							title = {product.title}
-							imageUrl = {product.image}
+							image = {product.image}
 							price = {product.price}
-							handleDelete = {handleDelete}
 							value = {product.value}
+							description = {product.description}
 						/>
 					))
 				}
+			</div>
+			<div className="px-6 mb-6 mt-2">
+				<p className="flex justify-between items-center p-2 border border-black rounded-lg mr-5">
+					<span className="font-medium text-xl">Total:</span>
+					<span className="font-medium text-2xl">${totalPrice(context.cartProducts).toFixed(2)}</span>
+				</p>
 			</div>
 		</aside>
 	);

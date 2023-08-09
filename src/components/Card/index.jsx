@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid';
 import { ShoppingCartContext } from '../../Context';
 
@@ -9,7 +9,6 @@ const Card = ( { data } ) => {
 	const showProduct = (productDetail) => {
 		context.openProductDetail();
 		context.setProductToShow(productDetail)
-		context.closeCheckoutSideMenu();
 	}
 
 	const renderIcon = (id) => {
@@ -24,8 +23,8 @@ const Card = ( { data } ) => {
 		}
 		else {
 			return (
-				<div className='absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1'>
-						<CheckIcon className='h-6 w-6 text-white'/>
+				<div className='absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1 border-2 border-whiter'>
+						<CheckIcon className='h-6 w-6 text-green-300'/>
 				</div>
 			);
 		}
