@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ShoppingCartContext } from '../../Context';
-import { ChevronDoubleLeftIcon, PlusIcon, ChevronDoubleRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { ChevronDoubleLeftIcon, PlusCircleIcon, ChevronDoubleRightIcon, XCircleIcon } from '@heroicons/react/24/solid';
 
 const ProductQuantity = () => {
 	const context = useContext(ShoppingCartContext);
@@ -9,7 +9,7 @@ const ProductQuantity = () => {
 		<div className={`${context.isQuantityMenuOpen ? 'flex' : 'hidden'} flex-col h-full w-full fixed border border-black rounded-lg bg-gray-400 bg-opacity-90 top-0 justify-center`}>
 			<aside className='bg-white flex flex-col border rounded-lg w-60 h-40 self-center justify-between border-black'>
 			<div className='hover:cursor-pointer self-end'>
-				<XMarkIcon className='h-6 w-6 text-red-500' onClick={() => {
+				<XCircleIcon className='h-6 w-6 text-red-400' onClick={() => {
 					context.closeQuantityMenu()
 					context.setQuantityCounter(1)
 				}}/>
@@ -27,7 +27,7 @@ const ProductQuantity = () => {
 					</div>
 				</div>
 				<div onClick={() => context.addCount()} className='hover:cursor-pointer self-center pb-5'>
-					<PlusIcon className='h-8 w-8 text-emerald-600 border rounded-lg border-black' />
+					<PlusCircleIcon className='h-8 w-8 text-emerald-400' />
 				</div>
 			</aside>
 		</div>

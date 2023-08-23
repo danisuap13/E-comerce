@@ -9,7 +9,7 @@ function MyOrders() {
 
 	return (
 			<Layout >
-				<h1 className="mb-4">My Orders</h1>
+				<h1 className="mb-4 text-lg">My Orders</h1>
 				{
 					context.order.map((order, index)=>(
 						<Link key={index} to={`/my-orders/${index}`}>
