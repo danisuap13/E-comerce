@@ -14,6 +14,10 @@ import ProductQuantity from '../../components/ProductQuantity'
 const AppRoutes = () => {
   let routes = useRoutes([
     { path: '/', element: <Home /> },
+    { path: "/Women's-Clothes", element: <Home /> },
+    { path: "/Men's-Clothes", element: <Home /> },
+    { path: "/Jewelery", element: <Home /> },
+    { path: "/Electronics", element: <Home /> },
     { path: '/my-account', element: <MyAccount /> },
     { path: '/my-order', element: <MyOrder /> },
     { path: '/my-orders', element: <MyOrders /> },

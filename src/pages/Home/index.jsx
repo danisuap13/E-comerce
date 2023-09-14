@@ -1,15 +1,14 @@
-import { useState, useEffect,useContext } from "react";
+import { useContext } from "react";
 import Layout from "../../components/Layout";
 import Card from "../../components/Card";
 import ProductDetail from "../../components/ProductDetail";
 import { ShoppingCartContext } from "../../Context";
-import { render } from "react-dom";
 
 function Home() {
 	const context = useContext(ShoppingCartContext);
 
 	const renderView = () => {
-		if(context.searchByTitle?.length > 0) {
+		if(context.searchByTitle?.length > 0 || context.searchByCategory) {
 			if(context.filteredItems?.length > 0) {
 				return (
 					context.filteredItems?.map(item => (
